@@ -25,10 +25,13 @@ export default class Cursor {
     return this.position;
   }
 
-  draw(ctx, x, y, lineHeight) {
+  draw(ctx, textDrawer) {
     ctx.fillStyle = "#282828";
     const offset = 10;
-    ctx.fillRect(x, y + offset, 2, lineHeight - offset);
+    const x = textDrawer.x;
+    const y = textDrawer.y - textDrawer.lineHeight/1.8;
+    const cursorHeight = textDrawer.lineHeight - offset;
+    ctx.fillRect(x, y, 2, cursorHeight);
   }
 
   getLineNumber() {
