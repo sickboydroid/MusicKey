@@ -2,6 +2,8 @@
 
 Learn typing while listening to your favorite song
 
+- Try it [here](https://sickboydroid.github.io/MusicKey/html/index.html)!
+
 ## TODO
 
 - [ ] Make lyrics scrollable
