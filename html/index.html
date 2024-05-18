@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MusicKey</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/dialog.css" />
+    <script defer type="module" src="../js/script.js"></script>
+    <script defer type="module" src="../js/dialog.js"></script>
+  </head>
+  <body>
+    <audio src="song.mp3"></audio>
+    <div class="dialog active">
+      <div class="container">
+        <div class="title">Pick Files</div>
+        <div class="content">
+          <div class="file-picker-container">
+            <label for="music-file">
+              Select Song
+              <input type="file" id="music-file" accept="audio/*" />
+            </label>
+            <div class="chosen-file">(No file selected)</div>
+          </div>
+          <div class="file-picker-container">
+            <label for="lyrics-file">
+              Select Lyrics
+              <input type="file" id="lyrics-file" accept=".lrc" />
+            </label>
+            <div class="chosen-file">(No file selected)</div>
+          </div>
+          <div class="error">
+            <span class="message"></span>
+          </div>
+        </div>
+        <div class="footer">
+          <button id="cancel">Cancel</button>
+          <button id="ok">Ok</button>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <h1 class="title">MusicKey</h1>
+      <div tabindex="0" class="canvas-container">
+        <canvas id="lyrics-canvas" width="800px" height="600px"></canvas>
+      </div>
+      <div class="status-bar">
+        <div>
+          <div class="play-pause">
+            <img src="../images/pause.svg" alt="play" />
+          </div>
+          <div class="speed"><span class="value">0</span> WPM</div>
+          <button id="reset">Reset</button>
+          <button id="load-new-song">Load New</button>
+        </div>
+        <div>
+          <div class="sync-lyrics">
+            Lyrics Delay (in seconds):
+            <input type="number" id="delay" value="0" max="500" min="-500" step="0.1" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

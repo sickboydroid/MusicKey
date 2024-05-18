@@ -1,0 +1,225 @@
+:root {
+  --teal: #08d9d6;
+  --red-lighter: hsl(345, 100%, 96%);
+  --red-light: hsl(345, 100%, 80%);
+  --red: #ff2e63;
+  --red-dark: hsl(345, 90%, 50%);
+  --red-darker: hsl(345, 80%, 45%);
+  --gray: #eaeaea;
+  --dark: #31363f;
+  --white: white;
+  --black: hsl(345, 100%, 12%);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  /* user-select: none; */
+}
+
+button,
+input,
+select {
+  font-size: 100%;
+  font-family: inherit;
+}
+
+html,
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+    Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+  color: var(--black);
+  cursor: default;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  transition: all 250ms;
+}
+
+.file-picker-container {
+  display: flex;
+  flex-direction: column;
+  & label {
+    --shadow-spread: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--red);
+    padding: 0.5rem;
+    cursor: pointer;
+    border-radius: 4px;
+    color: white;
+    box-shadow: 2px 4px 8px var(--shadow-spread) rgb(0 0 0 / 0.2);
+    transition: all 200ms;
+    & > input[type="file"] {
+      display: none;
+    }
+
+    &:hover {
+      --shadow-spread: 3px;
+      background-color: var(--red-dark);
+    }
+
+    &:active {
+      --shadow-spread: 5px;
+      background-color: var(--red-darker);
+    }
+  }
+
+  & .chosen-file {
+    text-align: center;
+    overflow: hidden;
+    padding: 10px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+button {
+  --shadow-spread: 1px;
+  border: none;
+  padding: 0.5em 1.5em;
+  border-radius: 0.4em;
+  box-shadow: 1px 3px 6px var(--shadow-spread) rgb(0 0 0 / 0.2);
+  cursor: pointer;
+  background-color: var(--white);
+  transition: all 250ms;
+  &:hover {
+    --shadow-spread: 2px;
+    color: white;
+    background-color: var(--red);
+  }
+
+  &:active {
+    --shadow-spread: 5px;
+    background-color: var(--red-dark);
+  }
+}
+
+body > .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: min(90%, 700px);
+  width: 100%;
+  gap: 20px;
+}
+
+.canvas-container {
+  border-radius: 9px;
+  font-family: UbuntuSansMono, monospace;
+  box-shadow: 2px 4px 8px rgb(0 0 0 / 0.2);
+  transition: background-color 300ms ease-in-out;
+  &:focus {
+    background-color: var(--red-lighter);
+  }
+}
+
+.status-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.status-bar div:first-child {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  & button {
+    font-size: 0.8rem;
+  }
+  & .play-pause {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0.8rem;
+    background-color: var(--white);
+    border-radius: 50%;
+    transition: all 250ms ease-in-out;
+    box-shadow: 2px 4px 8px rgb(0 0 0 / 0.2);
+    & img {
+      width: 2ch;
+    }
+
+    &:hover {
+      background-color: var(--red);
+    }
+
+    &:hover img {
+      filter: brightness(10);
+    }
+  }
+
+  & .speed {
+    color: var(--red);
+  }
+}
+
+.status-bar:last-child {
+  & .sync-lyrics {
+    & input {
+      width: 8ch;
+      padding: 4px;
+      border: 1px solid gray;
+      box-shadow: 1px 4px 8px rgb(0 0 0 / 0.2);
+    }
+  }
+}
+@font-face {
+  font-family: UbuntuSansMono;
+  src: url("../fonts/UbuntuSansMono/Variable.ttf"), url("f../fonts/UbuntuSansMono/static/Regular.ttf");
+}
+@font-face {
+  font-family: UbuntuSansMonoBold;
+  font-weight: bold;
+  src: url("../fonts/UbuntuSansMono/Variable.ttf"), url("../fonts/UbuntuSansMono/static/Bold.ttf");
+}
+@font-face {
+  font-family: UbuntuSansMonoItalic;
+  font-style: italic;
+  src: url("../fonts/UbuntuSansMono/Variable.ttf"), url("../fonts/UbuntuSansMono/static/Italic.ttf");
+}
+@font-face {
+  font-family: UbuntuSansMonoBoldItalic;
+  font-weight: bold;
+  font-style: italic;
+  src: url("../fonts/UbuntuSansMono/Variable.ttf"), url("../fonts/UbuntuSansMono/static/BoldItalic.ttf");
+}
+
+.correct-lyric {
+  color: darkgreen;
+}
+
+.incorrect-lyric {
+  color: red;
+}
+
+.playing-lyric {
+  display: inline-block;
+  transition: all 500ms;
+  transform: scale(1.1);
+  background-color: red;
+}
+
+canvas {
+  padding: 1em;
+  cursor: pointer;
+}
+
+.typing-speed-increasing {
+  color: green !important;
+}

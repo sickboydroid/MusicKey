@@ -1,0 +1,83 @@
+:root {
+  --black-color: #222831;
+  --light-color: #eeeeee;
+  --accent-color: #76abae;
+  --accent-light-color: #31363f;
+  --accent-dark-color: hsl(183, 26%, 40%);
+}
+
+.dialog {
+  position: absolute;
+  inset: 0 0 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 250ms ease-in-out;
+}
+
+.dialog.active {
+  visibility: visible;
+  opacity: 1;
+  z-index: 1;
+}
+
+.dialog.active ~ .container {
+  filter: blur(5px);
+}
+
+.dialog-blur {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  filter: blur(10px);
+  border: 2px solid black;
+}
+
+.dialog > .container {
+  width: min(95%, 500px);
+  height: min(95%, 280px);
+  box-shadow: 2px 8px 16px rgb(0 0 0 / 0.25);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: white;
+  padding: 1rem;
+}
+
+.dialog .title {
+  font-size: 1.5rem;
+}
+
+.dialog .content {
+  width: 100%;
+  flex: 1;
+  flex-wrap: wrap;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  & > .file-picker-container {
+    width: calc(50% - 1rem);
+    flex-grow: 0;
+  }
+}
+
+.dialog .footer {
+  display: flex;
+  justify-content: end;
+  gap: 20px;
+}
+
+.dialog .error {
+  flex-shrink: 0;
+  color: var(--red);
+  flex-basis: calc(100% - 1rem);
+  display: flex;
+  height: 2em;
+  justify-content: center;
+  align-items: center;
+}
