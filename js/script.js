@@ -37,7 +37,7 @@ const CHAR_WIDTH = textDrawer.getCharacterWidth("0");
 const LINE_HEIGHT = textDrawer.lineHeight;
 
 // setup listeners
-playPauseContainer_div.onclick = tooglePlayback;
+playPauseContainer_div.onclick = togglePlayback;
 reset_btn.onclick = restartPlayback;
 loadNewSong_btn.onclick = onLoadNewSong;
 lyricsDelaySeconds_input.oninput = onLyricsDelayInput;
@@ -64,10 +64,14 @@ function restartPlayback() {
   inCorrectLyricChars.clear();
   textDrawer.resetPosition();
   cursor.resetPosition();
+
+  // syncs state of music player and isPlaybackPlaying boolean
+  isPlaybackPlaying = !isPlaybackPlaying;
+  togglePlayback();
 }
 
 function onLoadNewSong() {
-  if (isPlaybackPlaying) tooglePlayback();
+  if (isPlaybackPlaying) togglePlayback();
   const dialog_div = document.querySelector("div.dialog");
   dialog_div.classList.add("active");
 }
@@ -111,7 +115,7 @@ export function setupNewSong(/** @type {String} */ trackUrl, /** @type {String} 
   // musicPlayer_audio.pause(); ? is it necessary?
   musicPlayer_audio.src = trackUrl;
   musicPlayer_audio.oncanplay = () => {
-    tooglePlayback();
+    togglePlayback();
     setupLyrics(lrcLyrics);
     canvasContainer_div.focus();
     update();
@@ -126,7 +130,7 @@ function setupLyrics(lrcLyrics) {
   setLyricsDelay(LyricsSynchronizer.getLyricsDelaySeconds(lyrics, musicPlayer_audio));
 }
 
-function tooglePlayback() {
+function togglePlayback() {
   isPlaybackPlaying = !isPlaybackPlaying;
   if (isPlaybackPlaying) {
     playPause_img.setAttribute("src", "../images/pause.svg");
