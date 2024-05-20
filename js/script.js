@@ -112,6 +112,7 @@ export function setupNewSong(/** @type {String} */ trackUrl, /** @type {String} 
   musicPlayer_audio.oncanplay = () => {
     tooglePlayback();
     setupLyrics(lrcLyrics);
+    canvasContainer_div.focus();
     update();
   };
 }
