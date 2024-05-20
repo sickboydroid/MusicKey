@@ -10,7 +10,8 @@ const canvasContainer_div = document.querySelector(".canvas-container");
 const canvas = canvasContainer_div.querySelector("canvas");
 const musicPlayer_audio = document.querySelector("audio");
 const lyricsDelaySeconds_input = document.querySelector(".sync-lyrics #delay");
-const playPause_img = document.querySelector(".play-pause > img");
+const playPauseContainer_div = document.querySelector(".play-pause");
+const playPause_img = playPauseContainer_div.querySelector("img");
 const wpmContainer_div = document.querySelector(".speed");
 const wpmValue_span = wpmContainer_div.querySelector("span");
 const reset_btn = document.querySelector("#reset");
@@ -36,7 +37,7 @@ const CHAR_WIDTH = textDrawer.getCharacterWidth("0");
 const LINE_HEIGHT = textDrawer.lineHeight;
 
 // setup listeners
-playPause_img.onclick = tooglePlayback;
+playPauseContainer_div.onclick = tooglePlayback;
 reset_btn.onclick = restartPlayback;
 loadNewSong_btn.onclick = onLoadNewSong;
 lyricsDelaySeconds_input.oninput = onLyricsDelayInput;
