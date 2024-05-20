@@ -71,18 +71,19 @@ function onLoadNewSong() {
   dialog_div.classList.add("active");
 }
 
-function onLyricsDelayInput(event) {
+function onLyricsDelayInput() {
   setLyricsDelay(lyricsDelaySeconds_input.value, false);
 }
 
-function onLyricsDelayChange(event) {
+function onLyricsDelayChange() {
   setLyricsDelay(lyricsDelaySeconds_input.value);
 }
 
 function setLyricsDelay(delaySeconds, updateInput = true) {
-  delaySeconds = Number(delaySeconds) ?? 0;
-  if (delaySeconds > 500) delaySeconds = 500;
-  if (delaySeconds < -500) delaySeconds = -500;
+  delaySeconds = Number(delaySeconds);
+  if (Number.isNaN(delaySeconds)) delaySeconds = 0;
+  else if (delaySeconds > 500) delaySeconds = 500;
+  else if (delaySeconds < -500) delaySeconds = -500;
   lyricsDelaySeconds = delaySeconds;
   if (updateInput) lyricsDelaySeconds_input.value = delaySeconds.toFixed(1);
 }
