@@ -20,6 +20,7 @@ const loadNewSong_btn = document.querySelector("#load-new-song");
 let lyricsTraverser = null;
 let lyricsDelaySeconds = 0;
 let cursor = null;
+let isMusicPlayerInitialized = false;
 const correctLyricChars = new Set();
 const inCorrectLyricChars = new Set();
 const typingSpeedMeter = new TypingSpeedMeter(correctLyricChars);
@@ -46,6 +47,7 @@ canvasContainer_div.onkeydown = onKeyDown;
 
 setupCanvas();
 setupMusicPlayer();
+isMusicPlayerInitialized = false;
 
 function setupCanvas() {
   canvasContext.font = `${LYRIC_FONT_SIZE_PX}px ${LYRIC_MONOSPACE_FONT}`;
@@ -53,7 +55,9 @@ function setupCanvas() {
 }
 
 function setupMusicPlayer() {
+  isMusicPlayerInitialized = true;
   const audioContext = new window.AudioContext();
+  console.log(audioContext);
   audioContext.createMediaElementSource(musicPlayer_audio).connect(audioContext.destination);
 }
 
@@ -113,6 +117,7 @@ function onKeyDown(/** @type {KeyboardEvent} */ event) {
 
 export function setupNewSong(/** @type {String} */ trackUrl, /** @type {String} */ lrcLyrics) {
   // musicPlayer_audio.pause(); ? is it necessary?
+  if (!isMusicPlayerInitialized) setupMusicPlayer();
   musicPlayer_audio.src = trackUrl;
   musicPlayer_audio.oncanplay = () => {
     togglePlayback();
