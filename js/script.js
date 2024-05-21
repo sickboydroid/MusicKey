@@ -46,8 +46,6 @@ lyricsDelaySeconds_input.onchange = onLyricsDelayChange;
 canvasContainer_div.onkeydown = onKeyDown;
 
 setupCanvas();
-setupMusicPlayer();
-isMusicPlayerInitialized = false;
 
 function setupCanvas() {
   canvasContext.font = `${LYRIC_FONT_SIZE_PX}px ${LYRIC_MONOSPACE_FONT}`;
@@ -57,7 +55,6 @@ function setupCanvas() {
 function setupMusicPlayer() {
   isMusicPlayerInitialized = true;
   const audioContext = new window.AudioContext();
-  console.log(audioContext);
   audioContext.createMediaElementSource(musicPlayer_audio).connect(audioContext.destination);
 }
 
